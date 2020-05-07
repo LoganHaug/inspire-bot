@@ -16,3 +16,12 @@ def add_document(collection: str, data: dict) -> None:
     if not isinstance(data, dict):
         raise TypeError('Parameter "data" must be a dictionary')
     DB[collection].insert_one(data)
+
+
+def find_random_document(collection) -> dict:
+    """Finds a random document from the user-defined collection
+    returns the document"""
+    document = list(DB[collection].aggregate([{'$sample': {'size': 1}}]))[0]
+    if not isinstance(document, dict):
+        return {'text': 'There are no documents stored, try storing some : )'}
+    return document
