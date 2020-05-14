@@ -25,3 +25,17 @@ def find_random_document(collection: str) -> dict:
     if document != []:
         return document[0]
     return {'text': 'There are no documents stored, try storing some : )'}
+
+
+def find_document(collection: str, query: dict=None, regex: list=None) -> dict:
+    """Finds a document that matches the query or regex within the collection
+    'collection' is the collection to search
+    'query' is a key value pair within the desired document
+    'regex' is a list where item 0 is the field, and item 1 is the regex
+    Note that 'regex' should the following format: ['field', 'regex']
+    """
+    if regex is not None:
+        return DB[collection].find_one({regex[0]: {'$regex': regex[1]}})
+    elif query is not None:
+        return DB[collection].find_one(query)
+    raise Exception('Didnt specify a query or a regex')
