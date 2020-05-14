@@ -1,0 +1,22 @@
+---
+# Schema for the inspire bot database
+quotes:
+    id: # MongoDB id number
+        type: int
+    quote-text:
+        type: str
+    quote-author:
+        type: str
+    time-quoted:
+        type: int # Time in EPOCH time
+    inserted-by:
+        type: int # Discord id of user
+users:
+    user-id:
+        type: int # Discord id of user
+    is-admin:
+        type: bool
+    is-moderator:
+        type: bool
+    num-commands: # Number of times that user send a command
+        type: int
