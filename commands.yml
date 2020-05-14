@@ -11,7 +11,7 @@ commands:
         requires_admin: true
         parameters:
             user_id:
-                type: str
+                type: int
     remove-moderator:
         alias:
             - rm_mod
@@ -21,7 +21,7 @@ commands:
         requires_admin: true
         parameters:
             user_id:
-                type: str
+                type: int
     add-admin:
         alias:
             - add_admin
@@ -30,7 +30,7 @@ commands:
         requires_admin: true
         parameters:
             user_id:
-                type: str
+                type: int
     remove-admin:
         alias:
             - rm_admin
@@ -39,7 +39,7 @@ commands:
         requires_admin: true
         parameters:
             user_id:
-                type: str
+                type: int
     add-quote:
         alias:
             - add_q
@@ -52,6 +52,8 @@ commands:
                 type: str
             quote_author:
                 type: str
+            user_id:
+                type: int
     find-random-quote:
         alias:
             - f_r_q
