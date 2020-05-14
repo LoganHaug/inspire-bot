@@ -1,0 +1,72 @@
+---
+# Commands config file for message_parser.py
+command-prefix: '*'
+commands:
+    add-moderator:
+        alias:
+            - add_mod
+            - a_m
+            - add_moderator
+        requires_mod: false
+        requires_admin: true
+        parameters:
+            user_id:
+                type: str
+    remove-moderator:
+        alias:
+            - rm_mod
+            - r_m
+            - remove_moderator
+        requires_mod: false
+        requires_admin: true
+        parameters:
+            user_id:
+                type: str
+    add-admin:
+        alias:
+            - add_admin
+            - a_a
+        requires_mod: false
+        requires_admin: true
+        parameters:
+            user_id:
+                type: str
+    remove-admin:
+        alias:
+            - rm_admin
+            - remove_admin
+        requires_mod: false
+        requires_admin: true
+        parameters:
+            user_id:
+                type: str
+    add-quote:
+        alias:
+            - add_q
+            - add_quote
+            - a_q
+        requires_mod: true
+        requires_admin: false
+        parameters:
+            quote_text:
+                type: str
+            quote_author:
+                type: str
+    find-random-quote:
+        alias:
+            - f_r_q
+            - find_random_quote
+            - find_rquote
+        requires_mod: false
+        requires_admin: false
+        parameters: none
+    find-quote:
+        alias:
+            - f_q
+            - find_q
+            - find_quote
+        requires_mod: false
+        requires_admin: false
+        parameters:
+            query:
+                type: str
