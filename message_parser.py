@@ -20,6 +20,21 @@ for command in COMMAND_SCHEMA['commands']:
     for alias in COMMANDS[command]['alias']:
         COMMANDLIST[alias] = command
 
+def add_moderator(user_id: int) -> str:
+    """Gives moderator privledges to a user
+    returns a message for the bot to say"""
+    user_document = database_utils.find_document('users', query={'user-id': user_id})
+    database_utils.update_document('users', user_document, {'is-moderator': True})
+    return COMMAND_SCHEMA['bot-messages']['made-user-mod']
+
+
+def remove_moderator(user_id: int) -> str:
+    """Revokes moderator privledges from a user
+    returns a message for the bot to say"""
+    user_document = database_utils.find_document('users', query={'user-id': user_id})
+    database_utils.update_document('users', user_document, {'is-moderator': False})
+    return COMMAND_SCHEMA['bot-messages']['removed-user-mod']
+
 
 def has_privledges(user_id: int) -> int:
     """Checks if a user is an admin or moderator
@@ -33,6 +48,7 @@ def has_privledges(user_id: int) -> int:
     if user_document['is-moderator'] is True:
         return 1
     return 0
+
 
 def add_quote(message_text: list, user_id: int) -> str:
     """Adds a quote to the quotes collection
@@ -53,6 +69,13 @@ def add_quote(message_text: list, user_id: int) -> str:
             database_utils.add_document('quotes', document)
         return COMMAND_SCHEMA['bot-messages']['successful-quote-insert']
     return COMMAND_SCHEMA['bot-messages']['no-privledges']
+
+
+def find_random_quote() -> str:
+    """Returns a random quote from the quotes collection"""
+    document = database_utils.find_random_document('quotes')
+    return f'"{document["quote-text"]}"\n   -{document["quote-author"]}'
+
 
 def parse_message(message_text: str, user_id: int) -> str:
     """Parses a user message, and executes commands based on message text
@@ -79,6 +102,9 @@ def parse_message(message_text: str, user_id: int) -> str:
                                            {'num-commands': user_document['num-commands'] + 1})
         user_command = COMMANDLIST[message_text[0]]
         function = user_command + '('
+        if COMMANDS[user_command]['parameters'] is None:
+            function += ')'
+            return eval(function)
         num_arguments = 0
         for argument in COMMANDS[user_command]['parameters']:
             if num_arguments != len(COMMANDS[user_command]['parameters']) - 1:
