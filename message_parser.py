@@ -65,8 +65,7 @@ def add_quote(message_text: list, user_id: int) -> str:
                     'time-quoted': time.time(), 'inserted_by': user_id}
         if database_utils.find_document('quotes', {'quote-text': message_text[1]}) is not None:
             return COMMAND_SCHEMA['bot-messages']['already-quoted']
-        else:
-            database_utils.add_document('quotes', document)
+        database_utils.add_document('quotes', document)
         return COMMAND_SCHEMA['bot-messages']['successful-quote-insert']
     return COMMAND_SCHEMA['bot-messages']['no-privledges']
 
