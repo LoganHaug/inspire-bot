@@ -7,6 +7,8 @@ bot-messages:
     failed-quote: 'command add_quote did not have all required parameters (quote_text, quote_author)'
     no-command: 'Didnt find a command to run :('
     already-quoted: 'This quote is already quoted, you silly billy.'
+    made-user-mod: 'Successfully made the user a moderator'
+    removed-user-mod: 'Successfully removed moderator privledges from the user'
 
 commands:
     add_moderator:
@@ -24,24 +26,6 @@ commands:
             - rm_mod
             - r_m
             - remove_moderator
-        requires_mod: false
-        requires_admin: true
-        parameters:
-            user_id:
-                type: int
-    add_admin:
-        alias:
-            - add_admin
-            - a_a
-        requires_mod: false
-        requires_admin: true
-        parameters:
-            user_id:
-                type: int
-    remove_admin:
-        alias:
-            - rm_admin
-            - remove_admin
         requires_mod: false
         requires_admin: true
         parameters:
@@ -66,14 +50,15 @@ commands:
             - find_rquote
         requires_mod: false
         requires_admin: false
-        parameters: none
-    find_quote:
-        alias:
-            - f_q
-            - find_q
-            - find_quote
-        requires_mod: false
-        requires_admin: false
         parameters:
-            message_text:
-                type: str
+    # TODO: add find_quote after quote database has increased
+    # find_quote:
+    #     alias:
+    #         - f_q
+    #         - find_q
+    #         - find_quote
+    #     requires_mod: false
+    #     requires_admin: false
+    #     parameters:
+    #         message_text:
+    #             type: str
