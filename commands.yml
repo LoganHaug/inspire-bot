@@ -1,8 +1,15 @@
 ---
 # Commands config file for message_parser.py
 command-prefix: '*'
+bot-messages:
+    no-privledges: 'You do not have privledges for this command, ask a moderator or admin to execute it for you'
+    successful-quote-insert: 'Successfully inserted quote!'
+    failed-quote: 'command add_quote did not have all required parameters (quote_text, quote_author)'
+    no-command: 'Didnt find a command to run :('
+    already-quoted: 'This quote is already quoted, you silly billy.'
+
 commands:
-    add-moderator:
+    add_moderator:
         alias:
             - add_mod
             - a_m
@@ -12,7 +19,7 @@ commands:
         parameters:
             user_id:
                 type: int
-    remove-moderator:
+    remove_moderator:
         alias:
             - rm_mod
             - r_m
@@ -22,7 +29,7 @@ commands:
         parameters:
             user_id:
                 type: int
-    add-admin:
+    add_admin:
         alias:
             - add_admin
             - a_a
@@ -31,7 +38,7 @@ commands:
         parameters:
             user_id:
                 type: int
-    remove-admin:
+    remove_admin:
         alias:
             - rm_admin
             - remove_admin
@@ -40,7 +47,7 @@ commands:
         parameters:
             user_id:
                 type: int
-    add-quote:
+    add_quote:
         alias:
             - add_q
             - add_quote
@@ -48,13 +55,11 @@ commands:
         requires_mod: true
         requires_admin: false
         parameters:
-            quote_text:
-                type: str
-            quote_author:
+            message_text:
                 type: str
             user_id:
                 type: int
-    find-random-quote:
+    find_random_quote:
         alias:
             - f_r_q
             - find_random_quote
@@ -62,7 +67,7 @@ commands:
         requires_mod: false
         requires_admin: false
         parameters: none
-    find-quote:
+    find_quote:
         alias:
             - f_q
             - find_q
@@ -70,5 +75,5 @@ commands:
         requires_mod: false
         requires_admin: false
         parameters:
-            query:
+            message_text:
                 type: str
