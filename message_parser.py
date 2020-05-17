@@ -73,7 +73,7 @@ def add_quote(message_text: list, user_id: int) -> str:
 def find_random_quote() -> str:
     """Returns a random quote from the quotes collection"""
     document = database_utils.find_random_document('quotes')
-    return f'"{document["quote-text"]}"\n   -{document["quote-author"]}'
+    return f'```"{document["quote-text"]}"\n   -{document["quote-author"]}```'
 
 
 def parse_message(message_text: str, user_id: int) -> str:
