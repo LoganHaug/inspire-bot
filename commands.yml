@@ -3,10 +3,10 @@
 command-prefix: '*'
 bot-messages:
     no-privledges: '`You do not have privledges for this command, ask a moderator or admin to execute it for you`'
-    successful-quote-insert: '`Successfully inserted quote!``'
-    failed-quote: '`command add_quote did not have all required parameters (quote_text, quote_author)``'
-    no-command: '`Didnt find a command to run :(``'
-    already-quoted: '`This quote is already quoted, you silly billy.``'
+    successful-quote-insert: '`Successfully inserted quote!`'
+    failed-quote: '`command add_quote did not have all required parameters (quote_text, quote_author)`'
+    no-command: '`Didnt find a command to run :(`'
+    already-quoted: '`This quote is already quoted, you silly billy.`'
     made-user-mod: '`Successfully made the user a moderator`'
     removed-user-mod: '`Successfully removed moderator privledges from the user`'
 
