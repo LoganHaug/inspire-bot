@@ -11,7 +11,6 @@ INSPIRE_BOT = discord.Client()
 @INSPIRE_BOT.event
 async def on_ready():
     print(f'{INSPIRE_BOT.user} connected to discord : )')
-from pprint import pprint as ppr
 @INSPIRE_BOT.event
 async def on_message(message):
     user_id, message_text = message.author.id, message.content
