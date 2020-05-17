@@ -1,7 +1,8 @@
 """Inspirational Discord Bot"""
 # External Imports
 import discord
-# No Internal Imports
+# Internal Imports
+import message_parser
 # Grabs the bot token
 with open('token.txt', 'r') as token_file:
     TOKEN = token_file.read()
@@ -10,5 +11,13 @@ INSPIRE_BOT = discord.Client()
 @INSPIRE_BOT.event
 async def on_ready():
     print(f'{INSPIRE_BOT.user} connected to discord : )')
+from pprint import pprint as ppr
+@INSPIRE_BOT.event
+async def on_message(message):
+    user_id, message_text = message.author.id, message.content
+    bot_message_text = message_parser.parse_message(message_text, user_id)
+    if bot_message_text is not None:
+        channel = INSPIRE_BOT.get_channel(message.channel.id)
+        await channel.send(bot_message_text)
 # Runs the client
 INSPIRE_BOT.run(TOKEN)
