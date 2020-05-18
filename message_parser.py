@@ -146,14 +146,14 @@ def help(message_text: list):
             user_command = 'help'
         else:
             user_command = COMMANDLIST[message_text[1]]
-    alias = '\nalias: '
+    alias = '\n\nalias: '
     for alas in COMMANDS[user_command]['alias']:
         alias += alas + ' '
-    usage = f'\nusage: {COMMAND_SCHEMA["command-prefix"]}' + COMMANDS[user_command]['usage']
+    usage = f'\n\nusage: {COMMAND_SCHEMA["command-prefix"]}' + COMMANDS[user_command]['usage']
     description = COMMANDS[user_command]['description']
-    available_commands = '\nAvailable Commands: ' + ''.join([command + ' ' for command in COMMANDS])
-    requires_mod = '\nRequires Moderator Status?: ' + str(COMMANDS[user_command]['requires_mod'])
-    requires_admin= '\nRequires Administrator Status?: ' + str(COMMANDS[user_command]['requires_admin'])
+    available_commands = '\n\nAvailable Commands: ' + ''.join([command + ' ' for command in COMMANDS])
+    requires_mod = '\n\nRequires Moderator Status?: ' + str(COMMANDS[user_command]['requires_mod'])
+    requires_admin= '\n\nRequires Administrator Status?: ' + str(COMMANDS[user_command]['requires_admin'])
     return '```' + description + usage + alias + available_commands + requires_mod + requires_admin + '```'
 
 def parse_message(message_text: str, user_id: int, mentions: list) -> str:
