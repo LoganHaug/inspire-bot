@@ -135,6 +135,26 @@ def find_random_quote() -> str:
     document = database_utils.find_random_document('quotes')
     return f'```"{document["quote-text"]}"\n   -{document["quote-author"]}```'
 
+def help(message_text: list):
+    """Displays the help message associated with the command
+    'message_text' is the message text split using shlex along spaces"""
+    database_utils.validate_arguments({'message_text': [message_text, list]})
+    if len(message_text) == 1:
+        user_command = 'help'
+    else:
+        if message_text[1] not in COMMANDLIST:
+            user_command = 'help'
+        else:
+            user_command = COMMANDLIST[message_text[1]]
+    alias = '\nalias: '
+    for alas in COMMANDS[user_command]['alias']:
+        alias += alas + ' '
+    usage = f'\nusage: {COMMAND_SCHEMA["command-prefix"]}' + COMMANDS[user_command]['usage']
+    description = COMMANDS[user_command]['description']
+    available_commands = '\nAvailable Commands: ' + ''.join([command + ' ' for command in COMMANDS])
+    requires_mod = '\nRequires Moderator Status?: ' + str(COMMANDS[user_command]['requires_mod'])
+    requires_admin= '\nRequires Administrator Status?: ' + str(COMMANDS[user_command]['requires_admin'])
+    return '```' + description + usage + alias + available_commands + requires_mod + requires_admin + '```'
 
 def parse_message(message_text: str, user_id: int, mentions: list) -> str:
     """Parses a user message, and executes commands based on message text

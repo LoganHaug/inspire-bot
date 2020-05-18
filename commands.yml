@@ -26,6 +26,8 @@ commands:
                 type: int
             mentions:
                 type: list
+        usage: 'add_moderator @<user>'
+        description: 'Gives a user moderator privileges'
     remove_moderator:
         alias:
             - rm_mod
@@ -38,6 +40,8 @@ commands:
                 type: int
             mentions:
                 type: list
+        usage: 'remove_moderator @<user>'
+        description: 'Removes moderator privileges from a user'
     add_quote:
         alias:
             - add_q
@@ -50,6 +54,8 @@ commands:
                 type: str
             user_id:
                 type: int
+        usage: 'add_quote "<quote text>" "<quote author>"'
+        description: 'Adds an inspirational quote to the database'
     find_random_quote:
         alias:
             - f_r_q
@@ -58,6 +64,18 @@ commands:
         requires_mod: false
         requires_admin: false
         parameters:
+        usage: 'find_random_quote'
+        description: 'Sends a random quote'
+    help:
+        alias:
+            - None
+        requires_mod: false
+        requires_admin: false
+        parameters:
+            message_text:
+                type: list
+        usage: 'help <command>'
+        description: 'This is the help commmand, it displays help messages for specific commands'
     # TODO: add find_quote after quote database has increased
     # find_quote:
     #     alias:
