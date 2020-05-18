@@ -115,6 +115,8 @@ def add_quote(message_text: list, user_id: int) -> str:
         # If the length of message text is less than 3, arguments are missing
         if len(message_text) < 3:
             return COMMAND_SCHEMA['bot-messages']['failed-quote']
+        if len(message_text) > 3:
+            return COMMAND_SCHEMA['bot-messages']['too-many-parameters']
         # list of message_text: command call, quote text, quote author
         document = {'quote-text': message_text[1],
                     'quote-author': message_text[2],
