@@ -11,6 +11,7 @@ bot-messages:
     removed-user-mod: '`Successfully removed moderator privledges from the user`'
     make-mod-fail: '`Could not make the user(s) a moderator, make sure you @ the user you would like to add`'
     remove-mod-fail: '`Could not remove moderator status from the user(s)`'
+    too-many-parameters: '`This command was executed with too many parameters, try again`'
 
 commands:
     add_moderator:
