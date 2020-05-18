@@ -152,7 +152,7 @@ def parse_message(message_text: str, user_id: int, mentions: list) -> str:
     # Split the message text along spaces, but not within quotations
     message_text = shlex.split(message_text)
     # Remove the command prefix from the message text
-    message_text[0] = message_text[0][1:]
+    message_text[0] = message_text[0][len(COMMAND_SCHEMA['command-prefix']):]
     # If the command is a valid command
     if message_text[0] in COMMANDLIST:
         # Find the user document
