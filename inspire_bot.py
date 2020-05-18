@@ -13,8 +13,8 @@ async def on_ready():
     print(f'{INSPIRE_BOT.user} connected to discord : )')
 @INSPIRE_BOT.event
 async def on_message(message):
-    user_id, message_text = message.author.id, message.content
-    bot_message_text = message_parser.parse_message(message_text, user_id)
+    user_id, message_text, mentions = message.author.id, message.content, message.mentions
+    bot_message_text = message_parser.parse_message(message_text, user_id, mentions)
     if bot_message_text is not None:
         channel = INSPIRE_BOT.get_channel(message.channel.id)
         await channel.send(bot_message_text)
