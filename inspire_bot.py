@@ -14,7 +14,7 @@ async def on_ready():
 @INSPIRE_BOT.event
 async def on_message(message):
     user_id, message_text, mentions = message.author.id, message.content, message.mentions
-    bot_message_text = message_parser.parse_message(message_text, user_id, mentions)
+    bot_message_text = message_parser.parse_message(message_text, user_id, mentions, INSPIRE_BOT)
     if bot_message_text is not None:
         channel = INSPIRE_BOT.get_channel(message.channel.id)
         await channel.send(bot_message_text)

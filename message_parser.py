@@ -156,7 +156,7 @@ def help(message_text: list):
     requires_admin= '\n\nRequires Administrator Status?: ' + str(COMMANDS[user_command]['requires_admin'])
     return '```' + description + usage + alias + available_commands + requires_mod + requires_admin + '```'
 
-def parse_message(message_text: str, user_id: int, mentions: list) -> str:
+def parse_message(message_text: str, user_id: int, mentions: list, client) -> str:
     """Parses a user message, and executes commands based on message text
     'message_text' is the message text to parse
     'author_id' is the discord id of the user that sent the message
@@ -166,6 +166,10 @@ def parse_message(message_text: str, user_id: int, mentions: list) -> str:
     database_utils.validate_arguments({'message_text': [message_text, str],
                                        'user-id': [user_id, int],
                                        'mentions': [mentions, list]})
+    # If the bot is mention reply to the mention
+    for mention in mentions:
+        if mention == client.user:
+            return COMMAND_SCHEMA['bot-messages']['mention-response']
     # If the message doesn't start with the start character, do nothing
     if not message_text.startswith(COMMAND_SCHEMA['command-prefix']):
         return None
